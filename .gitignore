@@ -1,0 +1,42 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/dist
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+# env
+.env
+
+# Sentry Config File
+.sentryclirc
+
+# Access log
+access.log
+error.log
+combined.log
+health.log
+
+# Drizzle
+drizzle
+
+# Data
+data
+output

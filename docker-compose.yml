@@ -1,0 +1,48 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount source code for live updates
+      - ./src:/app/src
+      # Mount package files for dependency updates
+      - ./package.json:/app/package.json
+      - ./pnpm-lock.yaml:/app/pnpm-lock.yaml
+      # Mount env file
+      - ./.env:/app/.env 
+      # Add output directory mount
+      - ./output:/app/output
+      # Preserve pnpm store
+      - pnpm-store:/root/.pnpm-store
+      # Exclude node_modules from mounting
+      - /app/node_modules
+    environment:
+      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+      - NODE_ENV=development
+      - OUTPUT_DIR=/app/output
+
+    # Enable watching for changes
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+          ignore:
+            - node_modules/
+            - dist/
+            - .git/
+        - action: sync
+          path: ./package.json
+          target: /app/package.json
+        - action: sync
+          path: ./.env
+          target: /app/.env
+        - action: rebuild
+          path: pnpm-lock.yaml
+
+volumes:
+  pnpm-store:
