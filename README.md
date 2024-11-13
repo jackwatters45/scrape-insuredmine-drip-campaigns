@@ -28,14 +28,3 @@ Script to scrape insuredmine engagement data.
 ## Output
 
 The script will output a csv file with data about each engagement and drip campaign.
-
-## Note
-
-- This script is currently only meant for email campaigns. Other types of campaigns, such as SMS, will likely encounter issues. Please feel free to contribute to this project if you find yourself scraping other types of campaigns.
-
-## needs fix
-
-- CAB Drip - Brendan
-- remove duplicate entries
-
-- brendan one is saved on desktop one
